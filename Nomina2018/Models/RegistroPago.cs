@@ -15,17 +15,32 @@ namespace Nomina2018.Models
 
         public virtual Empleado Empleado { get; set; }
 
-        public float IngresoTotal()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public double IngresoTotal()
         {
             return SueldoNeto + Apoyo;
         }
 
-        public float DescuentoTotal()
+        public double DescuentoTotal()
         {
             return ISR + Seguro;
         }
 
-        public float TotalPago()
+        public double TotalPago()
         {
             return IngresoTotal() - DescuentoTotal();
         }

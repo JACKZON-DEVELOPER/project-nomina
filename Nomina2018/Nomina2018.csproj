@@ -131,6 +131,8 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistroPagoController.cs" />
+    <Compile Include="Controllers\TabuladorSueldoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -291,6 +293,16 @@
     <Content Include="Views\Empleado\Details.cshtml" />
     <Content Include="Views\Empleado\Edit.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
+    <Content Include="Views\RegistroPago\Create.cshtml" />
+    <Content Include="Views\RegistroPago\Delete.cshtml" />
+    <Content Include="Views\RegistroPago\Details.cshtml" />
+    <Content Include="Views\RegistroPago\Edit.cshtml" />
+    <Content Include="Views\RegistroPago\Index.cshtml" />
+    <Content Include="Views\TabuladorSueldo\Create.cshtml" />
+    <Content Include="Views\TabuladorSueldo\Delete.cshtml" />
+    <Content Include="Views\TabuladorSueldo\Details.cshtml" />
+    <Content Include="Views\TabuladorSueldo\Edit.cshtml" />
+    <Content Include="Views\TabuladorSueldo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

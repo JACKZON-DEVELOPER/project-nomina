@@ -9,15 +9,14 @@ namespace Nomina2018.Models
 {
     public class TabuladorSueldo: ObjetoNomina
     {
-        public int Id { get; set; }
-
+       
         [ForeignKey("Empleado")]
-        public int EmpleadoId { get; set; }
+        public int Id { get; set; }
+        
+        public virtual Empleado Empleado { get; set; }
 
-        public Empleado Empleado { get; set; }
 
 
 
-      
     }
 }

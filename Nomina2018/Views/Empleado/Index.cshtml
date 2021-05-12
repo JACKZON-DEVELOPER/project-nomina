@@ -1,19 +1,22 @@
 ﻿@model IEnumerable<Nomina2018.Models.Empleado>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Empleados";
 }
 
-<h2>Index</h2>
+<h2>Lista empleados</h2>
 
-<p>
+
+<div class="col" style="text-align:right">
+    <a href="~/Empleado/Create" class="btn btn-outline-success"> Nuevo</a>
+
+</div>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TabuladorSueldo.Id)
-        </th>
+</p>*@
+<table class="table ">
+    <tr class="thead-dark">
+
         <th>
             @Html.DisplayNameFor(model => model.NumeroEmpleado)
         </th>
@@ -27,61 +30,40 @@
             @Html.DisplayNameFor(model => model.ApellidoMaterno)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
+            @Html.DisplayNameFor(model => model.Departamento.Nombre)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaIngreso)
-        </th>
+
         <th></th>
     </tr>
-
+     
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TabuladorSueldo.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumeroEmpleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaIngreso)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+<tr class="thead-light">
+
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroEmpleado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Departamento.Nombre)
+    </td>
+
+    <td>
+        <a class="btn btn-outline-primary" href="~/Empleado/Details/@item.Id">Detalles</a>
+        <a class="btn btn-outline-warning" href="~/Empleado/Edit/@item.Id">Editar</a>
+        <a class="btn btn-outline-danger" href="~/Empleado/Delete/@item.Id">Eliminar</a>
+        @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+    </td>
+</tr>
 }
 
 </table>

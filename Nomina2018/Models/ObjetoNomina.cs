@@ -8,12 +8,12 @@ namespace Nomina2018.Models
     public abstract class ObjetoNomina
     {
         // ingresos
-        public float SueldoNeto { get; set; }
-        public float Apoyo { get; set; }
-
+        public double SueldoNeto { get; set; }
+        public double Apoyo { get; set; }
+       
         //descuento
-        public float ISR { get; set; }
-        public float Seguro { get; set; }
+        public double ISR { get; set; }
+        public double Seguro { get; set; }
 
       
     }

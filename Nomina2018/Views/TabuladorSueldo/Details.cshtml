@@ -1,0 +1,58 @@
+﻿@model Nomina2018.Models.TabuladorSueldo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TabuladorSueldo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado.NumeroEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.NumeroEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SueldoNeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SueldoNeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apoyo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apoyo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seguro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seguro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

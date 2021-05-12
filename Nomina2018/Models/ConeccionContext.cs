@@ -17,7 +17,11 @@ namespace Nomina2018.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-           // throw new UnintentionalCodeFirstException();
+
+            modelBuilder.Entity<Empleado>()
+              .HasRequired(t => t.TabuladorSueldo)
+              .WithRequiredPrincipal(e => e.Empleado);
+            // throw new UnintentionalCodeFirstException();
         }
 
         public virtual DbSet<Departamento> Departamentos { get; set; }

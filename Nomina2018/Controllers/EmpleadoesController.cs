@@ -10,18 +10,18 @@ using Nomina2018.Models;
 
 namespace Nomina2018.Controllers
 {
-    public class EmpleadoController : Controller
+    public class EmpleadoesController : Controller
     {
         private ConeccionContext db = new ConeccionContext();
 
-        // GET: Empleado
+        // GET: Empleadoes
         public ActionResult Index()
         {
             var empleados = db.Empleados.Include(e => e.Departamento).Include(e => e.TabuladorSueldo);
             return View(empleados.ToList());
         }
 
-        // GET: Empleado/Details/5
+        // GET: Empleadoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,15 +36,15 @@ namespace Nomina2018.Controllers
             return View(empleado);
         }
 
-        // GET: Empleado/Create
+        // GET: Empleadoes/Create
         public ActionResult Create()
         {
             ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre");
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id");
+            ViewBag.Id = new SelectList(db.TabuladorSueldos, "EmpleadoId", "EmpleadoId");
             return View();
         }
 
-        // POST: Empleado/Create
+        // POST: Empleadoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -59,11 +59,11 @@ namespace Nomina2018.Controllers
             }
 
             ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
+            ViewBag.Id = new SelectList(db.TabuladorSueldos, "EmpleadoId", "EmpleadoId", empleado.Id);
             return View(empleado);
         }
 
-        // GET: Empleado/Edit/5
+        // GET: Empleadoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,11 +76,11 @@ namespace Nomina2018.Controllers
                 return HttpNotFound();
             }
             ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
+            ViewBag.Id = new SelectList(db.TabuladorSueldos, "EmpleadoId", "EmpleadoId", empleado.Id);
             return View(empleado);
         }
 
-        // POST: Empleado/Edit/5
+        // POST: Empleadoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -94,11 +94,11 @@ namespace Nomina2018.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
+            ViewBag.Id = new SelectList(db.TabuladorSueldos, "EmpleadoId", "EmpleadoId", empleado.Id);
             return View(empleado);
         }
 
-        // GET: Empleado/Delete/5
+        // GET: Empleadoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +113,7 @@ namespace Nomina2018.Controllers
             return View(empleado);
         }
 
-        // POST: Empleado/Delete/5
+        // POST: Empleadoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -10,116 +10,112 @@ using Nomina2018.Models;
 
 namespace Nomina2018.Controllers
 {
-    public class EmpleadoController : Controller
+    public class TabuladorSueldoController : Controller
     {
         private ConeccionContext db = new ConeccionContext();
 
-        // GET: Empleado
+        // GET: TabuladorSueldo
         public ActionResult Index()
         {
-            var empleados = db.Empleados.Include(e => e.Departamento).Include(e => e.TabuladorSueldo);
-            return View(empleados.ToList());
+            var tabuladorSueldos = db.TabuladorSueldos.Include(t => t.Empleado);
+            return View(tabuladorSueldos.ToList());
         }
 
-        // GET: Empleado/Details/5
+        // GET: TabuladorSueldo/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
+            if (tabuladorSueldo == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(tabuladorSueldo);
         }
 
-        // GET: Empleado/Create
+        // GET: TabuladorSueldo/Create
         public ActionResult Create()
         {
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre");
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id");
+            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado");
             return View();
         }
 
-        // POST: Empleado/Create
+        // POST: TabuladorSueldo/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso,DepartamentoID")] Empleado empleado)
+        public ActionResult Create([Bind(Include = "Id,SueldoNeto,Apoyo,ISR,Seguro")] TabuladorSueldo tabuladorSueldo)
         {
             if (ModelState.IsValid)
             {
-                db.Empleados.Add(empleado);
+                db.TabuladorSueldos.Add(tabuladorSueldo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
-            return View(empleado);
+            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
+            return View(tabuladorSueldo);
         }
 
-        // GET: Empleado/Edit/5
+        // GET: TabuladorSueldo/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
+            if (tabuladorSueldo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
-            return View(empleado);
+            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
+            return View(tabuladorSueldo);
         }
 
-        // POST: Empleado/Edit/5
+        // POST: TabuladorSueldo/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso,DepartamentoID")] Empleado empleado)
+        public ActionResult Edit([Bind(Include = "Id,SueldoNeto,Apoyo,ISR,Seguro")] TabuladorSueldo tabuladorSueldo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(tabuladorSueldo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
-            return View(empleado);
+            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
+            return View(tabuladorSueldo);
         }
 
-        // GET: Empleado/Delete/5
+        // GET: TabuladorSueldo/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
+            if (tabuladorSueldo == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(tabuladorSueldo);
         }
 
-        // POST: Empleado/Delete/5
+        // POST: TabuladorSueldo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Empleado empleado = db.Empleados.Find(id);
-            db.Empleados.Remove(empleado);
+            TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
+            db.TabuladorSueldos.Remove(tabuladorSueldo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

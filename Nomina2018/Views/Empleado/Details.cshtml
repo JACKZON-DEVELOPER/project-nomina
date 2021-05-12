@@ -9,7 +9,15 @@
 <div>
     <h4>Empleado</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal"  >
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento.Nombre)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.TabuladorSueldo.Id)
         </dt>

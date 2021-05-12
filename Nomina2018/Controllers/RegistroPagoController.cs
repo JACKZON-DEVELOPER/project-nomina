@@ -10,116 +10,112 @@ using Nomina2018.Models;
 
 namespace Nomina2018.Controllers
 {
-    public class EmpleadoController : Controller
+    public class RegistroPagoController : Controller
     {
         private ConeccionContext db = new ConeccionContext();
 
-        // GET: Empleado
+        // GET: RegistroPago
         public ActionResult Index()
         {
-            var empleados = db.Empleados.Include(e => e.Departamento).Include(e => e.TabuladorSueldo);
-            return View(empleados.ToList());
+            var registroPagos = db.RegistroPagos.Include(r => r.Empleado);
+            return View(registroPagos.ToList());
         }
 
-        // GET: Empleado/Details/5
+        // GET: RegistroPago/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            RegistroPago registroPago = db.RegistroPagos.Find(id);
+            if (registroPago == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(registroPago);
         }
 
-        // GET: Empleado/Create
+        // GET: RegistroPago/Create
         public ActionResult Create()
         {
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre");
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id");
+            ViewBag.EmpleadoId = new SelectList(db.Empleados, "Id", "Nombre");
             return View();
         }
 
-        // POST: Empleado/Create
+        // POST: RegistroPago/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso,DepartamentoID")] Empleado empleado)
+        public ActionResult Create([Bind(Include = "Id,FechaInicioRango,FechaFinalRango,EmpleadoId,SueldoNeto,Apoyo,ISR,Seguro")] RegistroPago registroPago)
         {
             if (ModelState.IsValid)
             {
-                db.Empleados.Add(empleado);
+                db.RegistroPagos.Add(registroPago);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
-            return View(empleado);
+            ViewBag.EmpleadoId = new SelectList(db.Empleados, "Id", "NumeroEmpleado", registroPago.EmpleadoId);
+            return View(registroPago);
         }
 
-        // GET: Empleado/Edit/5
+        // GET: RegistroPago/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            RegistroPago registroPago = db.RegistroPagos.Find(id);
+            if (registroPago == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
-            return View(empleado);
+            ViewBag.EmpleadoId = new SelectList(db.Empleados, "Id", "NumeroEmpleado", registroPago.EmpleadoId);
+            return View(registroPago);
         }
 
-        // POST: Empleado/Edit/5
+        // POST: RegistroPago/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso,DepartamentoID")] Empleado empleado)
+        public ActionResult Edit([Bind(Include = "Id,FechaInicioRango,FechaFinalRango,EmpleadoId,SueldoNeto,Apoyo,ISR,Seguro")] RegistroPago registroPago)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(registroPago).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
-            ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
-            return View(empleado);
+            ViewBag.EmpleadoId = new SelectList(db.Empleados, "Id", "NumeroEmpleado", registroPago.EmpleadoId);
+            return View(registroPago);
         }
 
-        // GET: Empleado/Delete/5
+        // GET: RegistroPago/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            RegistroPago registroPago = db.RegistroPagos.Find(id);
+            if (registroPago == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(registroPago);
         }
 
-        // POST: Empleado/Delete/5
+        // POST: RegistroPago/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Empleado empleado = db.Empleados.Find(id);
-            db.Empleados.Remove(empleado);
+            RegistroPago registroPago = db.RegistroPagos.Find(id);
+            db.RegistroPagos.Remove(registroPago);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

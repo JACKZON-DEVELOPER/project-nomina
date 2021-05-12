@@ -17,7 +17,7 @@ namespace Nomina2018.Controllers
         // GET: Empleado
         public ActionResult Index()
         {
-            var empleados = db.Empleados.Include(e => e.Departamento).Include(e => e.TabuladorSueldo);
+            var empleados = db.Empleados.Include(e => e.TabuladorSueldo);
             return View(empleados.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace Nomina2018.Controllers
         // GET: Empleado/Create
         public ActionResult Create()
         {
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre");
             ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id");
             return View();
         }
@@ -49,7 +48,7 @@ namespace Nomina2018.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso,DepartamentoID")] Empleado empleado)
+        public ActionResult Create([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso")] Empleado empleado)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,6 @@ namespace Nomina2018.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
             ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
             return View(empleado);
         }
@@ -75,7 +73,6 @@ namespace Nomina2018.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
             ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
             return View(empleado);
         }
@@ -85,7 +82,7 @@ namespace Nomina2018.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso,DepartamentoID")] Empleado empleado)
+        public ActionResult Edit([Bind(Include = "Id,NumeroEmpleado,Nombre,ApellidoPaterno,ApellidoMaterno,FechaNacimiento,Direccion,Telefono,Correo,FechaIngreso")] Empleado empleado)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +90,6 @@ namespace Nomina2018.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartamentoID = new SelectList(db.Departamentos, "Id", "Nombre", empleado.DepartamentoID);
             ViewBag.Id = new SelectList(db.TabuladorSueldos, "Id", "Id", empleado.Id);
             return View(empleado);
         }

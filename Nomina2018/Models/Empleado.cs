@@ -9,6 +9,7 @@ namespace Nomina2018.Models
 {
     public class Empleado
     {
+       
         public int Id { get; set; }
         //[Display(Name = "Numero Empleado")]
         [Required]
