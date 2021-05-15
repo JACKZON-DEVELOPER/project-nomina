@@ -15,9 +15,46 @@ namespace Nomina2018.Controllers
         private ConeccionContext db = new ConeccionContext();
 
         // GET: Empleado
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NumeroSortParm = String.IsNullOrEmpty(sortOrder) ? "numero_desc" : "";
+            ViewBag.DepartamentoSortParm = String.IsNullOrEmpty(sortOrder) ? "departamento_desc" : "";
+            //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+                  
+
             var empleados = db.Empleados.Include(e => e.Departamento).Include(e => e.TabuladorSueldo);
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                empleados = empleados.Where(s => s.NumeroEmpleado.Contains(searchString)
+                                       || s.Nombre.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    empleados = empleados.OrderByDescending(e => e.Nombre);
+                    break;
+                case "numero_desc":
+                    empleados = empleados.OrderByDescending(e => e.NumeroEmpleado);
+                    break;
+                case "departamento_desc":
+                    empleados = empleados.OrderByDescending(e => e.Departamento.Nombre);
+                    break;
+                //case "Date":
+                //    students = students.OrderBy(s => s.EnrollmentDate);
+                //    break;
+                //case "date_desc":
+                //    students = students.OrderByDescending(s => s.EnrollmentDate);
+                //    break;
+                default:
+                    empleados = empleados.OrderBy(e => e.ApellidoPaterno);
+                    break;
+            }
+
+
+           
             return View(empleados.ToList());
         }
 

@@ -4,103 +4,128 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
+<br />
+<h2>Detalles del Empleado</h2>
+<br />
 <div>
-    <h4>Empleado</h4>
-    <hr />
-    <dl class="dl-horizontal"  >
-        <dt>
-            @Html.DisplayNameFor(model => model.Departamento.Nombre)
-        </dt>
+    <h4>Informacion del Empleado</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.Departamento.Nombre)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TabuladorSueldo.Id)
-        </dt>
+    <table class="table table-dark">
+        <tr class="table-bordered">
+            <th>@Html.DisplayNameFor(model => model.NumeroEmpleado)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaIngreso) </th>
+            <th>@Html.DisplayNameFor(model => model.Departamento.Nombre)</th>
+        </tr>
+        <tr class="table-bordered">
+            <td>@Html.DisplayFor(model => model.NumeroEmpleado)</td>
+            <td>@Html.DisplayFor(model => model.FechaIngreso)</td>
+            <td>@Html.DisplayFor(model => model.Departamento.Nombre)</td>
+        </tr>
+    </table>
+    <h4>Informacion del Personal</h4>
+    <table class="table table-dark">
+        <tr class="table-bordered">
+            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.ApellidoPaterno)</th>
+            <th>@Html.DisplayNameFor(model => model.ApellidoMaterno)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaNacimiento)</th>
+        </tr>
+        <tr class="table-bordered">
+            <td>@Html.DisplayFor(model => model.Nombre)</td>
+            <td>@Html.DisplayFor(model => model.ApellidoPaterno)</td>
+            <td>@Html.DisplayFor(model => model.ApellidoMaterno)</td>
+            <td>@Html.DisplayFor(model => model.FechaNacimiento)</td>
+        </tr>
+    </table>
+    <h4>Datos de contacto</h4>
+    <table class="table table-dark">
+        <tr class="table-bordered">
+            <th>@Html.DisplayNameFor(model => model.Direccion)</th>
+            <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+            <th>@Html.DisplayNameFor(model => model.Correo)</th>
+        </tr>
+        <tr class="table-bordered">
+            <td>@Html.DisplayFor(model => model.Direccion)</td>
+            <td>@Html.DisplayFor(model => model.Telefono)</td>
+            <td>@Html.DisplayFor(model => model.Correo)</td>
+        </tr>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.TabuladorSueldo.Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroEmpleado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeroEmpleado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApellidoPaterno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApellidoPaterno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApellidoMaterno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApellidoMaterno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaNacimiento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaIngreso)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaIngreso)
-        </dd>
-
-    </dl>
 </div>
+@if (Model.PagoSueldos != null)
+{
+    <h3>Registro de pagos echos</h3>
+    <table class="table">
+        <tr>
+            <th>
+                Fecha inicio
+            </th>
+            <th>
+                Fecha Final
+            </th>
+            <th>
+                Sueldo Neto
+            </th>
+            <th>
+                Apoyo
+            </th>
+            <th>
+                ISR
+            </th>
+            <th>
+                Seguro
+            </th>
+            <th>
+                Total ingreso
+            </th>
+            <th>
+               Total descunto
+            </th>
+            <th>
+               total pagado
+            </th>
+        </tr>
+        @foreach (var item in Model.PagoSueldos)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInicioRango)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaFinalRango)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SueldoNeto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apoyo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seguro)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.IngresoTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescuentoTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPago)
+        </td>
+    </tr>
+        }
+    </table>
+}
+
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tabulador", "Details", "TabuladorSueldo", new { id = Model.Id}, new { @class = "btn btn-info" })
 </p>

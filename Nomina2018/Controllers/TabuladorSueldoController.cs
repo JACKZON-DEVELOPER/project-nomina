@@ -24,22 +24,35 @@ namespace Nomina2018.Controllers
         // GET: TabuladorSueldo/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
+                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
+            TabuladorSueldo tabuladorSueldoss = new TabuladorSueldo();
+            tabuladorSueldoss.Id = id.GetValueOrDefault();
+            tabuladorSueldoss.SueldoNeto = 0;
+            tabuladorSueldoss.ISR = 0;
+            tabuladorSueldoss.Apoyo = 0;
+            tabuladorSueldoss.Seguro = 0;
+
             if (tabuladorSueldo == null)
             {
-                return HttpNotFound();
+               
+                return View("Create", tabuladorSueldoss);
+                //return HttpNotFound();
             }
             return View(tabuladorSueldo);
         }
 
         // GET: TabuladorSueldo/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado");
+            ViewBag.Id = id;
+            
             return View();
         }
 
@@ -73,7 +86,8 @@ namespace Nomina2018.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
+            ViewBag.Id = id;
+            //ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
             return View(tabuladorSueldo);
         }
 
@@ -90,6 +104,7 @@ namespace Nomina2018.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
             return View(tabuladorSueldo);
         }

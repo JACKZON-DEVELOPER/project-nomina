@@ -4,14 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Departamentos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 @using (Html.BeginForm())
-{
-    
+{ 
+
 }
 
 <table class="table">
@@ -24,16 +22,22 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        string selectedRow = "";
+        if (item.Id == ViewBag.DepartamentoID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow" valing="top">
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new {@class = "btn btn-primary" })
             </td>
         </tr>
     }
 
 </table>
+
+

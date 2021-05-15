@@ -4,23 +4,51 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Departamento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-    </dl>
-</div>
+<h2>Departamento: @Model.Nombre </h2>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    @Html.ActionLink("Back to List", "Index", "", new {@class = "btn btn-outline-info" })
 </p>
+
+@if (Model.Empleados != null)
+{
+    <h3>Empleados del departamento</h3>
+    <table class="table">
+        <tr>
+            <th>Numero Empleado</th>
+            <th>Nombre</th>
+            <th colspan="2">Apellidos</th>
+        </tr>
+
+        @foreach (var item in Model.Empleados)
+        {
+            string selectedRow = "";
+            if (item.DepartamentoID == ViewBag.DepartamentoID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                
+                <td>
+                    @item.NumeroEmpleado
+                </td>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.ApellidoPaterno
+                </td>
+                <td>
+                    @item.ApellidoMaterno
+                </td>
+                <td>
+                    @Html.ActionLink("Selecionar", "Details", "Empleado", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @*<a class="btn btn-outline-info" href="~/Empleado/Index/@item.Id">Selecionar</a>*@
+                    @*@Html.ActionLink("Select", "Index", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+}

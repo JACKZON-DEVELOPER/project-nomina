@@ -15,26 +15,32 @@ namespace Nomina2018.Controllers
         private ConeccionContext db = new ConeccionContext();
 
         // GET: Departamento
-        public ActionResult Index(string searchString)
-        {
-            //var departamentos = from s in db.Departamentos
-            //                    select s;
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    departamentos = departamentos.Where(s => s.Nombre.Contains(searchString));
-            //    //students = students.Where(s => s.LastName.Contains(searchString)
-            //    //                       || s.FirstMidName.Contains(searchString));
-           // }
-            return View(db.Departamentos.ToList());
+        public ActionResult Index(int? id)
+        {                
+        var depattamentos = db.Departamentos.Include(e => e.Empleados);
+
+            if (id != null)
+            {
+                ViewBag.DepartamentoID = id.Value;
+                
+            }
+
+            return View(depattamentos.ToList());
         }
 
         // GET: Departamento/Details/5
         public ActionResult Details(int? id)
         {
+            if (id != null)
+            {
+                ViewBag.DepartamentoID = id.Value;
+            }
             if (id == null)
             {
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           // var depattamentos = db.Departamentos.Include(e => e.Empleados);
             Departamento departamento = db.Departamentos.Find(id);
             if (departamento == null)
             {

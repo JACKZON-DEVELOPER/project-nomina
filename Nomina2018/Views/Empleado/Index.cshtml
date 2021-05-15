@@ -4,40 +4,73 @@
     ViewBag.Title = "Empleados";
 }
 
+<br />
 <h2>Lista empleados</h2>
 
+<br />
+<div class="row">
 
-<div class="col" style="text-align:right">
-    <a href="~/Empleado/Create" class="btn btn-outline-success"> Nuevo</a>
+    <div class="col-10">
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <p style="display: inline" class="col-4">
+                    @*@Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })*@
+                    Ingresa numero de Empleado:
+                </p>
+                @Html.TextBox("SearchString", "", new { @class = "form-control col-3" })
+                <input type="submit" value="Buscar" class="btn btn-outline-info col-1" />
 
+            </div>
+
+       
+        }
+    </div>
+    <div class="col-2">
+        <a href="~/Empleado/Create" class="btn btn-outline-success col"> Nuevo</a>
+
+    </div>
+
+   
+
+    
 </div>
+<br />
 @*<p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create")ass
 </p>*@
 <table class="table ">
     <tr class="thead-dark">
 
         <th>
-            @Html.DisplayNameFor(model => model.NumeroEmpleado)
+            @Html.ActionLink("Numero de Empleado", "Index", new { sortOrder = ViewBag.NumeroSortParm })
+            @* @Html.DisplayNameFor(model => model.NumeroEmpleado, new { sortOrder = ViewBag.NumeroSortParm })*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @* @Html.DisplayNameFor(model => model.Nombre, new { sortOrder = ViewBag.NameSortParm })*@
         </th>
+        <th colspan="2">
+            Apellidos
+        </th>
+        
         <th>
-            @Html.DisplayNameFor(model => model.ApellidoPaterno)
+            @Html.ActionLink("Departamento", "Index", new { sortOrder = ViewBag.DepartamentoSortParm })
+            @* @Html.DisplayNameFor(model => model.Departamento.Nombre, , new { sortOrder = ViewBag.DepartamentoSortParm })*@
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoMaterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Departamento.Nombre)
-        </th>
+        
 
         <th></th>
     </tr>
-     
-@foreach (var item in Model) {
-<tr class="thead-light">
+
+    @foreach (var item in Model) {
+
+        string selectedRow = "";
+        if (item.Id == ViewBag.Id)
+        {
+            selectedRow = "success";
+        }
+<tr class="@selectedRow thead-light">
 
     <td>
         @Html.DisplayFor(modelItem => item.NumeroEmpleado)
@@ -45,6 +78,7 @@
     <td>
         @Html.DisplayFor(modelItem => item.Nombre)
     </td>
+
     <td>
         @Html.DisplayFor(modelItem => item.ApellidoPaterno)
     </td>
@@ -55,7 +89,10 @@
         @Html.DisplayFor(modelItem => item.Departamento.Nombre)
     </td>
 
+
     <td>
+        @*@Html.ActionLink("Select", "Index", new { id = item.Id })*@
+
         <a class="btn btn-outline-primary" href="~/Empleado/Details/@item.Id">Detalles</a>
         <a class="btn btn-outline-warning" href="~/Empleado/Edit/@item.Id">Editar</a>
         <a class="btn btn-outline-danger" href="~/Empleado/Delete/@item.Id">Eliminar</a>
@@ -64,6 +101,6 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
     </td>
 </tr>
-}
+    }
 
 </table>
