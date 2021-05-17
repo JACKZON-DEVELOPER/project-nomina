@@ -4,111 +4,122 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<br />
+
+<h2>Realizar pago al  empleado @Model.Empleado.Nombre @Model.Empleado.ApellidoPaterno @Model.Empleado.ApellidoMaterno</h2>
+<br />
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>RegistroPago</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaInicioRango, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaInicioRango, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaInicioRango, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaFinalRango, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaFinalRango, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaFinalRango, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-horizontal bg-gradient-dark">
+    <h4>Ingrese el rango de la fecha a pagar </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.EmpleadoId)
+    @Html.HiddenFor(model => model.ISR)
+    @Html.HiddenFor(model => model.SueldoNeto)
+    @Html.HiddenFor(model => model.Apoyo)
+    @Html.HiddenFor(model => model.Seguro)
 
 
 
-
-
-
-
-
-
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmpleadoId, "EmpleadoId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EmpleadoId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EmpleadoId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SueldoNeto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SueldoNeto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SueldoNeto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Apoyo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Apoyo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Apoyo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ISR, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ISR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ISR, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Seguro, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Seguro, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Seguro, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaInicioRango, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FechaInicioRango, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FechaInicioRango, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFinalRango, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FechaFinalRango, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FechaFinalRango, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />  
+
+    <h4>Verifique los datos del pago</h4>
+    <hr />
+    <table class="table table-dark">
+        <tr style="text-align:center">
+            <th class="bg-success" colspan="3">
+              INGRESO
+            </th>
+            <th class="bg-danger" colspan="3">
+                DESCUENTO
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SueldoNeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apoyo)
+            </th>
+            <th class="bg-success">
+                @Html.DisplayNameFor(model => model.IngresoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seguro)
+            </th>
+            <th class="bg-danger">
+                @Html.DisplayNameFor(model => model.DescuentoTotal)
+            </th>
+            <th class="bg-primary">
+                @Html.DisplayNameFor(model => model.TotalPago)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.SueldoNeto)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Apoyo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IngresoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ISR)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Seguro)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DescuentoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TotalPago)
+            </td>
+
+        </tr>
+    </table>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Realizar pago" class="btn btn-success" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Details", "Empleado", new { id = Model.EmpleadoId }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Cambiar datos del tabulador", "Details", "TabuladorSueldo", new { id = Model.EmpleadoId }, new { @class = "btn btn-primary" })
+
 </div>
 
 @section Scripts {

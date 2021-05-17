@@ -37,9 +37,30 @@ namespace Nomina2018.Controllers
         }
 
         // GET: RegistroPago/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.EmpleadoId = new SelectList(db.Empleados, "Id", "Nombre");
+            if (id != null)
+            {
+                var tabulador = db.TabuladorSueldos.Where(s => s.Id == id).Single();
+                RegistroPago registroPago = new RegistroPago();
+                registroPago.SueldoNeto = tabulador.SueldoNeto;
+                registroPago.Apoyo = tabulador.Apoyo;
+                registroPago.ISR = tabulador.ISR;
+                registroPago.Seguro = tabulador.Seguro;
+                registroPago.EmpleadoId = id.GetValueOrDefault();
+
+                Empleado empleado = db.Empleados.Find(id);
+                registroPago.Empleado = empleado;
+
+                ViewBag.EmpleadoId = registroPago.EmpleadoId;
+
+                return View(registroPago);
+            }
+            //var registroPagos = db.RegistroPagos.Include(r => r.Empleado);
+            
+
+            // ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", );
+            
             return View();
         }
 
@@ -54,7 +75,7 @@ namespace Nomina2018.Controllers
             {
                 db.RegistroPagos.Add(registroPago);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Empleado");
             }
 
             ViewBag.EmpleadoId = new SelectList(db.Empleados, "Id", "NumeroEmpleado", registroPago.EmpleadoId);

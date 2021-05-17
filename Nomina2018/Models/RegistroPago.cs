@@ -12,10 +12,12 @@ namespace Nomina2018.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Fecha Inicial")]
         public DateTime FechaInicioRango { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fecha Final")]
         public DateTime FechaFinalRango { get; set; }
 
         public int EmpleadoId { get; set; }

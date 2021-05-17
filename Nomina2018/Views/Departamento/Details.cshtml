@@ -4,12 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-
-<h2>Departamento: @Model.Nombre </h2>
+<br />
 <p>
 
-    @Html.ActionLink("Back to List", "Index", "", new {@class = "btn btn-outline-info" })
+    @Html.ActionLink("Regresar", "Index", "", new { @class = "btn btn-outline-info" })
 </p>
+<h2>Departamento: @Model.Nombre </h2>
+
 
 @if (Model.Empleados != null)
 {
@@ -43,7 +44,7 @@
                     @item.ApellidoMaterno
                 </td>
                 <td>
-                    @Html.ActionLink("Selecionar", "Details", "Empleado", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Ver detalles", "Details", "Empleado", new { id = item.Id }, new { @class = "btn btn-info" })
                     @*<a class="btn btn-outline-info" href="~/Empleado/Index/@item.Id">Selecionar</a>*@
                     @*@Html.ActionLink("Select", "Index", new { id = item.Id })*@
                 </td>

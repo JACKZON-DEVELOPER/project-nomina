@@ -24,26 +24,22 @@ namespace Nomina2018.Controllers
         // GET: TabuladorSueldo/Details/5
         public ActionResult Details(int? id)
         {
-
             if (id == null)
             {
-                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
             TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
-            TabuladorSueldo tabuladorSueldoss = new TabuladorSueldo();
-            tabuladorSueldoss.Id = id.GetValueOrDefault();
-            tabuladorSueldoss.SueldoNeto = 0;
-            tabuladorSueldoss.ISR = 0;
-            tabuladorSueldoss.Apoyo = 0;
-            tabuladorSueldoss.Seguro = 0;
-
             if (tabuladorSueldo == null)
             {
-               
-                return View("Create", tabuladorSueldoss);
-                //return HttpNotFound();
+                TabuladorSueldo tabuladorSueldo1Def = new TabuladorSueldo();
+                tabuladorSueldo1Def.Id = id.GetValueOrDefault();
+                tabuladorSueldo1Def.SueldoNeto = 0;
+                tabuladorSueldo1Def.Apoyo = 0;
+                tabuladorSueldo1Def.ISR = 0;
+                tabuladorSueldo1Def.Seguro = 0;
+                return RedirectToAction("Create", tabuladorSueldo1Def);
+                //return View("Create");
+                // return HttpNotFound();
             }
             return View(tabuladorSueldo);
         }
@@ -51,9 +47,10 @@ namespace Nomina2018.Controllers
         // GET: TabuladorSueldo/Create
         public ActionResult Create(int? id)
         {
-            ViewBag.Id = id;
+            TabuladorSueldo tabuladorSueldo = new TabuladorSueldo();
             
-            return View();
+            
+            return View(tabuladorSueldo);
         }
 
         // POST: TabuladorSueldo/Create
@@ -67,7 +64,8 @@ namespace Nomina2018.Controllers
             {
                 db.TabuladorSueldos.Add(tabuladorSueldo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
+                return RedirectToAction("Details", tabuladorSueldo);
             }
 
             ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
@@ -86,8 +84,7 @@ namespace Nomina2018.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = id;
-            //ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
+            ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
             return View(tabuladorSueldo);
         }
 
@@ -102,38 +99,12 @@ namespace Nomina2018.Controllers
             {
                 db.Entry(tabuladorSueldo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", tabuladorSueldo);
             }
-
             ViewBag.Id = new SelectList(db.Empleados, "Id", "NumeroEmpleado", tabuladorSueldo.Id);
             return View(tabuladorSueldo);
         }
 
-        // GET: TabuladorSueldo/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
-            if (tabuladorSueldo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tabuladorSueldo);
-        }
-
-        // POST: TabuladorSueldo/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TabuladorSueldo tabuladorSueldo = db.TabuladorSueldos.Find(id);
-            db.TabuladorSueldos.Remove(tabuladorSueldo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

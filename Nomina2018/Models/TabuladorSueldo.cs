@@ -9,7 +9,7 @@ namespace Nomina2018.Models
 {
     public class TabuladorSueldo: ObjetoNomina
     {
-       
+        [Required]
         [ForeignKey("Empleado")]
         public int Id { get; set; }
         

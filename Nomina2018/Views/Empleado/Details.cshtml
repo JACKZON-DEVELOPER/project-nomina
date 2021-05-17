@@ -8,6 +8,12 @@
 <h2>Detalles del Empleado</h2>
 <br />
 <div>
+
+    <div class="align-content-end">
+        @Html.ActionLink("Regresar", "Index", "", new { @class = "btn btn-info" })
+        @Html.ActionLink("Editar datos del Empleado", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    </div>
+    <hr />
     <h4>Informacion del Empleado</h4>
 
 
@@ -53,10 +59,33 @@
     </table>
 
 </div>
+<hr />
+<br />
+
+<p class="">
+   
+    @Html.ActionLink("Realizar pago", "Create", "RegistroPago", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Tabulador de sueldo", "Details", "TabuladorSueldo", new { id = Model.Id }, new { @class = "btn btn-primary" })
+</p>
+
 @if (Model.PagoSueldos != null)
 {
     <h3>Registro de pagos echos</h3>
-    <table class="table">
+    <table class="table table-dark">
+        <tr style="text-align:center">
+            <th colspan="2">
+
+            </th>
+            <th class="bg-success" colspan="3">
+                INGRESO
+            </th>
+            <th class="bg-danger" colspan="3">
+                DESCUENTO
+            </th>
+            <th>
+
+            </th>
+        </tr>
         <tr>
             <th>
                 Fecha inicio
@@ -70,20 +99,21 @@
             <th>
                 Apoyo
             </th>
+            <th class="bg-success">
+                Total ingreso
+            </th>
             <th>
                 ISR
             </th>
             <th>
                 Seguro
             </th>
-            <th>
-                Total ingreso
+
+            <th class="bg-danger">
+                Total descunto
             </th>
-            <th>
-               Total descunto
-            </th>
-            <th>
-               total pagado
+            <th class="bg-primary">
+                Total pagado
             </th>
         </tr>
         @foreach (var item in Model.PagoSueldos)
@@ -102,15 +132,16 @@
             @Html.DisplayFor(modelItem => item.Apoyo)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.IngresoTotal)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ISR)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Seguro)
         </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.IngresoTotal)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.DescuentoTotal)
         </td>
@@ -123,9 +154,3 @@
 }
 
 
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Tabulador", "Details", "TabuladorSueldo", new { id = Model.Id}, new { @class = "btn btn-info" })
-</p>

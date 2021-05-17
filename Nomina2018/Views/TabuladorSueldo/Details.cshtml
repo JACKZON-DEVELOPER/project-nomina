@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
+<br />
+<h2>Detalles del tabulador de sueldo</h2>
+<br />
 <div>
-    <h4>TabuladorSueldo</h4>
+    <h4>Tabulador de Sueldo de @Model.Empleado.Nombre @Model.Empleado.ApellidoPaterno @Model.Empleado.ApellidoMaterno</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -53,6 +53,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Details", "Empleado", new { id = Model.Id }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Cambiar datos", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+
+
+
 </p>
