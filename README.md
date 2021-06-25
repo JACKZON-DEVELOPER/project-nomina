@@ -44,7 +44,6 @@ La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la pa
   - los pagos se realizaran por fecha previamente asignada
 
 
- <img  align='right' src="https://github.com/JACKZON-DEVELOPER/Tourist-web-system/blob/master/Screenshot%202021-06-03%20at%2017-15-53%20My%20Yii%20Application.png" alt="Pantalla Sietema WEb" width="400">
 
 <hr/>
 
