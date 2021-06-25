@@ -24,7 +24,7 @@ La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la pa
 
 <hr/>
   
-  <img  align='right' src="https://github.com/JACKZON-DEVELOPER/Tourist-web-system/blob/master/Screenshot%202021-06-03%20at%2017-03-24%20El%20Cuyo.png" alt="Pantalla Sietema WEb" width="400">
+  <img  align='right' src="https://github.com/JACKZON-DEVELOPER/project-nomina/blob/276fd61fbdda1edfada643639b58262526947f05/web_nomina.png" alt="Pantalla Sietema WEb" width="400">
 
 ### FUNCIONES DE LA APLICACIÓN
 
