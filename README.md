@@ -1,5 +1,5 @@
 <h3 align="center">
-  <img src="" alt="CAID Tourist web" width="200">
+  <img src="" alt="NOMINA APLICATION" width="200">
 </h3>
 
 # Aplicación web Administrador de nomina
