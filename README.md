@@ -1,6 +1,3 @@
-<h3 align="center">
-  <img src="" alt="NOMINA APLICATION" width="200">
-</h3>
 
 # Aplicación web Administrador de nomina
 
@@ -8,13 +5,13 @@
 
 ### Descripción 
 
-Es una aplicación web que administra el control total de los pagos de nomina a los empleados, se realizan pagos por quinsena de manera automatica, cuenta con un tabulador de suledo por empleado, y se pede realizar busquedas por departamento.
+Es una aplicación web que administra el control total de los pagos de nómina a los empleados, se realizan pagos por quincena de manera automática, cuenta con un tabulador de sueldo por empleado, y se puede realizar búsquedas por departamento.
 
 <hr/>
 
 ### Creación 
 
-La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la parte de viual, se utilizo el patrón de diseño MVC junto a gestor de base de datos SQL Server.
+La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la parte de visual, se utilizó el patrón de diseño MVC junto a gestor de base de datos SQL Server.
 
 <div align="center">
   <img src="https://img.shields.io/badge/-ASP.NET-512BD4?style=flat&logo=net&logoColor=white%22"> 
@@ -28,20 +25,21 @@ La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la pa
 
 ### FUNCIONES DE LA APLICACIÓN
 
-* REGISTRO. Pueden registrar a los emplados 
-  - Se registra los datos del empleado. 
-  - Se identifica por numero de empleado.
-* TABULADOR. Cada empleado contara con un tabulador de sueldo
-  - se ingresan los detalles para el calcular el sualdo del empleado.
-  - Alumnos- pueden ingresar a las clases por medio de un código QR.
-* registro. se registrara cada pago .
-  - se registrara los pagos echos por empleados.
-* busqueda. se podra busacar a los empleados para saber su estado de nomina. 
-  - Se puede realizar busqueda por numero de empleado.
-  - Se puede realizar busqueda por departamento.
-* Pagos. se realizara pagos de forma automatica. 
-  - los pagos re ralizaran con base al tabulador de sueldo
-  - los pagos se realizaran por fecha previamente asignada
+
+*	REGISTRO. Pueden registrar a los empleados. 
+  -	Se registra los datos del empleado.
+  - Se identifica por número de empleado.
+*	TABULADOR. Cada empleado contara con un tabulador de sueldo. 
+  -	se ingresan los detalles para el calcular el sueldo del empleado.
+*	REGISTRO. se registrará cada pago. 
+  -	se registrará los pagos hechos por empleados.
+*	BÚSQUEDA. se podrá buscar a los empleados para saber su estado de nómina. 
+  -	Se puede realizar búsqueda por número de empleado.
+  -	Se puede realizar búsqueda por departamento.
+*	PAGOS. se realizará pagos de forma automática. 
+  -	los pagos se realizarán con base al tabulador de sueldo.
+  -	los pagos se realizarán por fecha previamente asignada.
+
 
 
 
@@ -49,7 +47,7 @@ La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la pa
 
 ### Objetivo para el proyecto
 
-Se tiene pensado ampliar el proyecto a mas funcionalidades y a establecer una interfaz de usuario mas atractiva .
+Se tiene pensado ampliar el proyecto a más funcionalidades y a establecer una interfaz de usuario más atractiva. 
 
 <hr/>
 
