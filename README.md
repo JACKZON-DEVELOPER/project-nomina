@@ -25,23 +25,19 @@ La aplicación web esta creada en ASP.NET y el Framework de Bootstrap para la pa
 
 ### FUNCIONES DE LA APLICACIÓN
 
-
-*	REGISTRO. Pueden registrar a los empleados. 
-  -	Se registra los datos del empleado.
-  - Se identifica por número de empleado.
-*	TABULADOR. Cada empleado contara con un tabulador de sueldo. 
-  -	se ingresan los detalles para el calcular el sueldo del empleado.
-*	REGISTRO. se registrará cada pago. 
-  -	se registrará los pagos hechos por empleados.
-*	BÚSQUEDA. se podrá buscar a los empleados para saber su estado de nómina. 
-  -	Se puede realizar búsqueda por número de empleado.
-  -	Se puede realizar búsqueda por departamento.
-*	PAGOS. se realizará pagos de forma automática. 
-  -	los pagos se realizarán con base al tabulador de sueldo.
-  -	los pagos se realizarán por fecha previamente asignada.
-
-
-
+  *	REGISTRO. Pueden registrar a los empleados. 
+    -	Se registra los datos del empleado.
+    - Se identifica por número de empleado.
+  *	TABULADOR. Cada empleado contara con un tabulador de sueldo. 
+    -	se ingresan los detalles para el calcular el sueldo del empleado.
+  *	REGISTRO. se registrará cada pago. 
+    -	se registrará los pagos hechos por empleados.
+  *	BÚSQUEDA. se podrá buscar a los empleados para saber su estado de nómina. 
+    -	Se puede realizar búsqueda por número de empleado.
+    -	Se puede realizar búsqueda por departamento.
+  *	PAGOS. se realizará pagos de forma automática. 
+    -	los pagos se realizarán con base al tabulador de sueldo.
+    -	los pagos se realizarán por fecha previamente asignada.
 
 <hr/>
 
